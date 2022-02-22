@@ -1,0 +1,87 @@
+:root {
+    --blue: #3448C5;
+    --white: #EEEEF1;
+    --dark_blue: #0c163b;
+    --coral: #ff5050;
+    --yellow: #f7bc00; 
+    --light_blue: #48c4d8;   
+}
+
+* {
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: var(--light_blue);
+}
+
+a:hover, a:visited:hover {
+    text-decoration: underline;
+    color: var(--coral);
+}
+
+p {
+    line-height: 1.5;
+    font-size: 1.15em;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 2em;
+    color: var(--coral);
+}
+
+button {
+    width: 10rem;
+    height: 3rem;
+    background-color: var(--blue);
+    color: var(--white);
+    border-radius: 1.5em;
+    box-shadow: 5px 5px 10px rgb(29, 60, 145, 0.25);
+    font-weight: 900;
+    font-size: 1.25em;
+    margin: 1rem;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+article.cloud_header {
+    background: no-repeat center/100% url('https://res.cloudinary.com/jonathancloudinary/w_auto,f_auto,q_auto,fl_lossy/v1644685173/CSM%20Assignment/evushkigxdebcp2a5e9f.png');
+    height: 30vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+article.cloud_body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1000px;
+}
+
+.cloud_body > div {
+    max-width: 750px;
+    margin-bottom: 1rem;
+}
+
+.cloud_body > div p {
+    padding: 1rem;
+}
