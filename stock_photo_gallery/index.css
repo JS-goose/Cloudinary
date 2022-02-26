@@ -120,9 +120,9 @@ main > section {
   cursor: pointer;
 }
 
-.img_container:hover {
+.img_container img:hover {
   transform: rotate(-5deg);
-  box-shadow: 1px 10px 20px var(--coral);
+  box-shadow: 10px 10px 20px var(--coral);
   border-radius: 3px;
   transition: all 0.3s;
 }
