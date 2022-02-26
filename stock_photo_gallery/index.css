@@ -2,6 +2,7 @@
   --blue: #3448c5;
   --white: #eeeef1;
   --dark_blue: #0c163b;
+  --dark_blue_25: rgba(12, 22, 59,0.5);
   --coral: #ff5050;
   --yellow: #f7bc00;
   --light_blue: #48c4d8;
@@ -40,6 +41,18 @@ body {
   align-items: center;
 }
 
+#modal_container {
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--dark_blue_25);
+}
+
+.modal_invisible {
+  position: absolute;
+  top: -500%;
+  z-index: 0;
+}
+
 h1 {
   font-size: 2em;
   color: var(--coral);
@@ -70,7 +83,8 @@ header {
 }
 
 nav {
-  background: no-repeat center/100% url('https://res.cloudinary.com/jonathancloudinary/image/upload/v1644685173/CSM%20Assignment/evushkigxdebcp2a5e9f.png');
+  background: no-repeat center/100%
+    url("https://res.cloudinary.com/jonathancloudinary/image/upload/v1644685173/CSM%20Assignment/evushkigxdebcp2a5e9f.png");
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -97,7 +111,6 @@ main > section {
   height: 100%;
   margin: 0.4rem 0 0.4rem 0;
 }
-
 
 .row {
   width: 100%;
@@ -135,7 +148,8 @@ footer {
   height: 5vh;
 }
 
-footer article, a {
+footer article,
+a {
   font-size: 1.1em;
 }
 

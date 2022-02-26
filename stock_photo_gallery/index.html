@@ -13,6 +13,20 @@
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
+    <!-- //TODO This needs work like something awful -->
+    <section id="modal_container">
+      <article id="img_modal">
+        <div id="modal_title_container">
+          <h1>Image Modal</h1>
+          <button id="modal_close_button" onclick="closeModal()">Close</button>
+        </div>
+        <div id="modal_body_container">
+          <h2>Responsive Image</h2>
+          <p>Resize the window to see the image respond to the viewport width</p>
+          <img src="" alt="" />
+        </div>
+      </article>
+    </section>
     <!--[if lt IE 7]>
       <p class="browsehappy">
         You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your
@@ -35,19 +49,25 @@
             <div class="img_container">
               <img
                 src="https://res.cloudinary.com/jonathancloudinary/image/private/s--Oe16CxqQ--/t_nasa_watermark_2/v1645210626/privateImageGallery/archives_casa.jpeg.jpg"
-                alt=""
+                alt="a beautiful blue and purple space nebula"
+                class="space_image"
+                title="space_image_one"
               />
             </div>
             <div class="img_container">
               <img
                 src="https://res.cloudinary.com/jonathancloudinary/image/private/s--FK1A1xmI--/t_nasa_watermark_2/v1645210627/privateImageGallery/a2261_lg.jpeg.jpg"
-                alt=""
+                alt="a purple pulsar on the black background of space"
+                class="space_image"
+                title="space_image_two"
               />
             </div>
             <div class="img_container">
               <img
                 src="https://res.cloudinary.com/jonathancloudinary/image/private/s--1AXOMNID--/t_nasa_watermark_2/v1645210627/privateImageGallery/sgra_lg.jpeg.jpg"
-                alt=""
+                alt="a small blue and red nebula"
+                class="space_image"
+                title="space_image_three"
               />
             </div>
           </div>
@@ -55,19 +75,25 @@
             <div class="img_container">
               <img
                 src="https://res.cloudinary.com/jonathancloudinary/image/private/s--zIpOq1O0--/t_nasa_watermark_2/v1645210628/privateImageGallery/chandra_space.jpeg.jpg"
-                alt=""
+                alt="the crab nebula with many colors against the black background of space"
+                class="space_image"
+                title="space_image_four"
               />
             </div>
             <div class="img_container">
               <img
                 src="https://res.cloudinary.com/jonathancloudinary/image/private/s--J0YGebwp--/t_nasa_watermark_2/v1645210629/privateImageGallery/archives_lg.jpeg.jpg"
-                alt=""
+                alt="a collage of many space images"
+                class="space_image"
+                title="space_image_five"
               />
             </div>
             <div class="img_container">
               <img
                 src="https://res.cloudinary.com/jonathancloudinary/image/private/s--k8btLHII--/t_nasa_watermark_2/v1645210629/privateImageGallery/20th_lg.jpeg.jpg"
-                alt=""
+                alt="multiple space images in a grid pattern"
+                class="space_image"
+                title="space_image_six"
               />
             </div>
           </div>
@@ -87,10 +113,10 @@
       <article>
         <!-- <p>and optimized with &nbsp;</p>
         <a href="https://cloudinary.com/documentation"> -->
-          <img
-            src="https://res.cloudinary.com/jonathancloudinary/image/upload/f_auto,q_auto,w_400/v1644243495/Cloudinary%20Logos/cloudinary_logo_blue_0720_2x_zylxg5.png"
-            alt=""
-          />
+        <img
+          src="https://res.cloudinary.com/jonathancloudinary/image/upload/f_auto,q_auto,w_400/v1644243495/Cloudinary%20Logos/cloudinary_logo_blue_0720_2x_zylxg5.png"
+          alt=""
+        />
         <!-- </a> -->
       </article>
     </footer>

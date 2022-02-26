@@ -1,6 +1,6 @@
 // const fs = require("fs");
-require('dotenv').config()
-const cloudinary = require("cloudinary").v2;
+// require("dotenv").config();
+// const cloudinary = require("cloudinary").v2;
 
 // const images = [];
 
@@ -28,4 +28,25 @@ const cloudinary = require("cloudinary").v2;
 //   });
 // });
 
-const modal = document.getElementById('img_modal')
+const eventHolders = [...document.getElementsByClassName("space_image")];
+const imageObj = { title: "", src: "" };
+const modalContainer = document.getElementById("modal_container");
+const modalCloseButton = document.getElementById("modal_close_button");
+
+eventHolders.forEach((image) => {
+  image.addEventListener("click", function () {
+    imageObj.src = image.src;
+    imageObj.title = image.title;
+    console.log(imageObj);
+
+    modalContainer.classList.remove("modal_invisible");
+    modalContainer.classList.add("modal_visible");
+  });
+});
+
+function closeModal() {
+  console.log("close button clicked");
+  modalContainer.classList.add("modal_invisible");
+}
+
+if (imageObj.title !== "") console.log(imageObj);
