@@ -6,6 +6,9 @@ cloudinary.config({
     api_secret: 'P2sTmibIMeN-9N4YEoJL3uByrQQ'
 });
 
+//Add image locations manually
+const images = [];
+
 cloudinary.uploader.upload('assets/images/black_hole.webp', 
 {
     public_id: 'space/black_hole_sun_from_node',
