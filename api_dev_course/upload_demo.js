@@ -4,6 +4,7 @@ cloudinary.config({
   cloud_name: "jonathancloudinary",
   api_key: "YOUR_API_KEY",
   api_secret: "YOUR_API_SECRET_KEY",
+  secure: true
 });
 
 const images = [
