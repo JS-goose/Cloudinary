@@ -1,11 +1,5 @@
-const cloudinary = require("cloudinary").v2;
-
-cloudinary.config({
-  cloud_name: "jonathancloudinary",
-  api_key: "333687443411313",
-  api_secret: "P2sTmibIMeN-9N4YEoJL3uByrQQ",
-  secure: true
-});
+require('dotenv').config();
+const cloudinary = require('cloudinary').v2;
 
 const images = [
   "assets/images/baseball_hat_transparent.png",
