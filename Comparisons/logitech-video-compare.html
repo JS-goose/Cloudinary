@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Logitech Lightspeed — Cloudinary player test clone</title>
+
+    <!-- Cloudinary Video Player CSS (optional for player UI) -->
+    <link href="https://unpkg.com/cloudinary-video-player/dist/cld-video-player.min.css" rel="stylesheet">
+
+    <style>
+        /* Page-level styles to mimic the Logitech hero/PDP-ish layout */
+        :root {
+            --bg: #0f1720;
+            --panel: #fff;
+            --muted: #8b96a8;
+            --accent: #00a4ff;
+            --text: #081225;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            font-family: Inter, Roboto, Arial, sans-serif;
+            background: linear-gradient(180deg, #071025 0%, #0f1720 60%);
+            color: var(--panel);
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 18px 80px rgba(2, 8, 23, 0.6);
+            color: var(--text);
+        }
+
+        .mast {
+            display: flex;
+            gap: 20px;
+            padding: 22px 28px;
+            align-items: center;
+            border-bottom: 1px solid #eef4fb;
+            background: linear-gradient(90deg, #fff, #fcfdff 80%);
+        }
+
+        .brand {
+            width: 64px;
+            height: 64px;
+            border-radius: 8px;
+            background: #eaf3ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #0b66a3;
+        }
+
+        .title {
+            flex: 1;
+        }
+
+        .title h1 {
+            margin: 0;
+            font-size: 22px;
+            color: #0b2130;
+        }
+
+        .title p {
+            margin: 6px 0 0 0;
+            color: #556;
+            font-size: 14px;
+        }
+
+        /* Two column hero: left text, right video */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 640px;
+            gap: 22px;
+            padding: 28px;
+            align-items: start;
+        }
+
+        .hero-left {
+            padding-right: 8px;
+        }
+
+        .kicker {
+            color: #0b66a3;
+            font-weight: 700;
+            font-size: 12px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .hero-left h2 {
+            margin: 0 0 12px 0;
+            font-size: 28px;
+            color: #0b2130;
+        }
+
+        .hero-left p {
+            margin: 0 0 14px 0;
+            color: #44515f;
+            line-height: 1.5;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .btn-primary {
+            background: #0b66a3;
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 0;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-ghost {
+            background: #eef6ff;
+            color: #0b66a3;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 0;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .hero-right {
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 360px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Cloudinary player will fill container */
+        .cld-video-player,
+        video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            background: #000;
+        }
+
+        /* content blocks */
+        .content {
+            padding: 22px 28px;
+            display: grid;
+            gap: 18px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .card {
+            background: #fff;
+            padding: 14px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(12, 18, 28, 0.04);
+            border: 1px solid #eef6ff;
+        }
+
+        .card h4 {
+            margin: 0 0 8px 0;
+            color: #0b2130;
+            font-size: 16px;
+        }
+
+        .card p {
+            margin: 0;
+            color: #556;
+            font-size: 14px;
+        }
+
+        /* metrics row for test output */
+        .metrics {
+            display: flex;
+            gap: 12px;
+            padding: 18px 28px;
+            border-top: 1px solid #f1f5f9;
+            background: #fbfdff;
+            align-items: center;
+        }
+
+        .metric {
+            background: #eaf3ff;
+            color: #0b4f80;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .note {
+            padding: 14px 28px 28px 28px;
+            color: #536074;
+            font-size: 13px;
+        }
+
+        @media (max-width:980px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-right {
+                height: 260px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page" role="main" aria-labelledby="pageTitle">
+        <div class="mast">
+            <div class="brand" aria-hidden="true">G</div>
+            <div class="title">
+                <h1 id="pageTitle">LIGHTSPEED Wireless — Rebuilt for Cloudinary test</h1>
+                <p>Recreated page layout for realistic WebPageTest / Lighthouse comparison. Cloudinary player replaced
+                    the original video player and uses your Cloudinary master.</p>
+            </div>
+            <div style="min-width:140px;text-align:right;color:#556;font-size:13px">Test clone</div>
+        </div>
+
+        <!-- HERO area: left text, right video (Cloudinary player here) -->
+        <div class="hero" role="region" aria-label="Hero">
+            <div class="hero-left">
+                <div class="kicker">Technology</div>
+                <h2>LIGHTSPEED Wireless — Built for performance</h2>
+                <p>LIGHTSPEED is Logitech's advanced 2.4GHz wireless technology delivering fast and reliable low-latency
+                    connection for gaming. This test page reproduces the hero/intro content and places the video in the
+                    exact same right-hand slot.</p>
+
+                <div class="cta-row">
+                    <button class="btn-primary">Shop LIGHTSPEED</button>
+                    <button class="btn-ghost">See specs</button>
+                </div>
+            </div>
+
+            <!-- Right: Cloudinary player replacing whatever Logitech used -->
+            <div class="hero-right" id="playerWrap">
+                <!-- Cloudinary video player element -->
+                <video id="cloudPlayer" controls preload="metadata" playsinline>
+                    <source
+                        src="https://res.cloudinary.com/examples-and-education/video/upload/v1774564652/Logitech/Logitech_lightspeed_sicj6b.mp4"
+                        type="video/mp4">
+                    Your browser does not support HTML5 video.
+                </video>
+
+                <!--
+          Alternative: Use Cloudinary player script to have the Cloudinary UI.
+          If you want the Cloudinary player UI and analytics, uncomment the player block below and include the JS/CSS.
+          I left the simple video tag active because it isolates payload for performance tests.
+        -->
+            </div>
+        </div>
+
+        <!-- content area with three feature cards similar to the original -->
+        <div class="content" role="region" aria-label="Details">
+            <div class="card">
+                <h4>Ultra low latency</h4>
+                <p>Lightning-fast response time for competitive gaming. Optimized video demonstrates low-latency
+                    playback.</p>
+            </div>
+            <div class="card">
+                <h4>Engineered for reliability</h4>
+                <p>Multi-channel performance and durable connectivity for consistent gameplay across regions.</p>
+            </div>
+            <div class="card">
+                <h4>Design and battery life</h4>
+                <p>Balanced design built to last through extended play sessions with minimal power draw.</p>
+            </div>
+        </div>
+
+        <!-- metrics display to quickly show browser-collected timings when available -->
+        <div class="metrics" role="status" aria-live="polite">
+            <div class="metric" id="metricVideoBytes">Video bytes: —</div>
+            <div class="metric" id="metricTotalBytes">Total page bytes: —</div>
+            <div class="metric" id="metricLCP">LCP: —</div>
+            <div style="flex:1;color:#536074;font-size:13px">Run WebPageTest or Lighthouse against this full clone to
+                capture page-level metrics with the Cloudinary player in the exact same DOM position as Logitech's
+                original video.</div>
+        </div>
+
+        <div class="note">
+            <strong>How to test</strong>
+            <ol>
+                <li>Host this HTML on a staging domain (recommended) or open locally to preview. For final comparisons
+                    use a publicly-accessible staging host so WebPageTest can hit it.</li>
+                <li>Important: to test the Logitech baseline you should run WebPageTest directly against the real
+                    Logitech URL:
+                    <code>https://www.logitechg.com/en-us/discover/technology/lightspeed</code>.
+                    For the Cloudinary variant run the same WebPageTest configuration against this cloned page (same
+                    location, device, connectivity profile). Use cold-cache runs and repeat-view runs. Compare median
+                    values.
+                </li>
+                <li>If you want the Cloudinary UI player instead of the plain video element, I can provide a second
+                    version that loads the Cloudinary player SDK and initializes it with the same Cloudinary URL. That
+                    will show the Cloudinary player controls and analytics but may slightly adjust initial payload due
+                    to player JS. For raw media payload isolation the plain &lt;video&gt; tag is recommended.</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Optional: Cloudinary player JS (only needed if you decide to use the Cloudinary player UI)
+       <script src="https://unpkg.com/cloudinary-video-player/dist/cld-video-player.min.js"></script>
+       <script>
+         var cldPlayer = window.cloudinary.VideoPlayer && cloudinary.VideoPlayer('cloudPlayer', {
+           cloud_name: 'examples-and-education',
+           // additional player options
+         });
+       </script>
+  -->
+
+    <script>
+        /* Quick attempt to read resource timing for page-level metrics (best-effort). */
+        function updateMetrics() {
+            try {
+                const resources = performance.getEntriesByType('resource') || [];
+                const vidResources = resources.filter(r => r.initiatorType === 'video' || (r.name && r.name.indexOf('Logitech_lightspeed') >= 0) || (r.name && r.name.indexOf('cloudinary.com') >= 0));
+                const vidBytes = vidResources.reduce((s, e) => s + (e.transferSize || 0), 0);
+                const totalBytes = resources.reduce((s, e) => s + (e.transferSize || 0), 0);
+                document.getElementById('metricVideoBytes').textContent = 'Video bytes: ' + (vidBytes ? Math.round(vidBytes / 1024) + ' KB' : '—');
+                document.getElementById('metricTotalBytes').textContent = 'Total page bytes: ' + Math.round(totalBytes / 1024) + ' KB';
+            } catch (err) {
+                console.warn('metric calc err', err);
+            }
+        }
+
+        // LCP (best-effort)
+        try {
+            let lcp;
+            const po = new PerformanceObserver((entryList) => {
+                const entries = entryList.getEntries();
+                lcp = entries[entries.length - 1];
+                if (lcp) {
+                    const s = (lcp.renderTime || lcp.loadTime) ? ((Math.round((lcp.renderTime || lcp.loadTime)) / 1000).toFixed(2) + ' s') : '—';
+                    document.getElementById('metricLCP').textContent = 'LCP: ' + s;
+                }
+            });
+            po.observe({ type: 'largest-contentful-paint', buffered: true });
+            // Update resource metrics after load
+            window.addEventListener('load', function () {
+                setTimeout(updateMetrics, 1100);
+            });
+        } catch (e) {
+            // not supported
+        }
+    </script>
+</body>
+
+</html>
